@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>💖 Agathe Mon Amour : Chaos Total 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(45deg, #ff69b4, #ff1493, #ff00ff);
+      background-size: 600% 600%;
+      animation: bgmove 5s infinite linear;
+      color: white;
+      font-family: 'Comic Sans MS', cursive;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    @keyframes bgmove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: 70px;
+      animation: flashTitle 1s infinite alternate;
+      text-shadow: 0 0 10px yellow;
+    }
+
+    @keyframes flashTitle {
+      0% { transform: scale(1) rotate(-2deg); color: white; }
+      100% { transform: scale(1.1) rotate(2deg); color: yellow; }
+    }
+
+    button {
+      font-size: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      background: yellow;
+      color: black;
+      cursor: pointer;
+      margin: 10px;
+      box-shadow: 0 0 20px white;
+      animation: wiggle 0.4s infinite alternate;
+    }
+
+    @keyframes wiggle {
+      0% { transform: rotate(-2deg); }
+      100% { transform: rotate(2deg); }
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 30px;
+      animation: floatHeart 5s linear infinite;
+    }
+
+    @keyframes floatHeart {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+    }
+
+    textarea {
+      width: 80%;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>💘 AGATHE POUR TOUJOURS 💘</h1>
+  <p>Un site rempli d'amour, de mauvais goût, et de coeurs qui volent partout.</p>
+
+  <button onclick="generateBlague()">😂 Blague romantique</button>
+  <button onclick="generatePoeme()">📝 Poème pour Agathe</button>
+  <button onclick="chaosTotal()">🌀 Activer le chaos total</button>
+
+  <p id="output" style="margin-top: 30px; font-size: 24px; font-style: italic;"></p>
+
+  <hr style="margin: 50px; border: 2px dashed white;">
+
+  <h2>💍 Demande officielle à Agathe 💍</h2>
+  <form onsubmit="return demandeAmour(event)">
+    <textarea id="message" placeholder="Agathe, j'ai quelque chose à te dire..." rows="5"></textarea><br><br>
+    <button type="submit">💘 ÉPOUSE-MOI 💘</button>
+  </form>
+  <p id="reponse" style="margin-top: 20px; font-size: 24px;"></p>
+
+  <audio id="bgSound" src="https://www.bensound.com/bensound-music/bensound-love.mp3" autoplay loop></audio>
+
+  <script>
+    const blagues = [
+      "Agathe, si tu étais un bug, je ne te corrigerais jamais.",
+      "T'es plus sucrée qu'un Kinder Pingui oublié dans le frigo.",
+      "Agathe, t'es comme un bug CSS : incompréhensible, mais je t'aime.",
+      "Quand Agathe éternue, les anges pleurent de jalousie.",
+      "J’ai mis ton nom dans ChatGPT et il m’a crashé de love."
+    ];
+
+    const poemes = [
+      "Agathe, ton regard est une requête SQL qui sélectionne mon cœur.",
+      "Agathe, tes yeux = if(true) { love++; }",
+      "Agathe, j’ai mis ton nom dans une boucle infinie : je t’aime pour toujours.",
+      "Agathe, t’es mon balise <title> à moi.",
+      "Agathe, t’es comme un div mal fermé : je pense à toi tout le temps."
+    ];
+
+    function generateBlague() {
+      const random = blagues[Math.floor(Math.random() * blagues.length)];
+      document.getElementById("output").textContent = random;
+      spawnHeartExplosion();
+    }
+
+    function generatePoeme() {
+      const random = poemes[Math.floor(Math.random() * poemes.length)];
+      document.getElementById("output").textContent = random;
+      spawnHeartExplosion();
+    }
+
+    function demandeAmour(e) {
+      e.preventDefault();
+      const msg = document.getElementById("message").value.trim();
+      if (!msg) {
+        alert("Tu dois écrire un message à Agathe, romantique va !");
+        return false;
+      }
+      document.getElementById("reponse").innerHTML = "💌 Agathe a lu ton message et a répondu : 'LOL ok pourquoi pas 😘'";
+      spawnHeartExplosion();
+      return false;
+    }
+
+    function spawnHeartExplosion() {
+      for (let i = 0; i < 30; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.top = Math.random() * window.innerHeight + "px";
+        heart.textContent = "💗";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+      }
+    }
+
+    function chaosTotal() {
+      setInterval(() => {
+        document.body.style.background = `hsl(${Math.random()*360}, 100%, 50%)`;
+        document.body.style.transform = `rotate(${(Math.random() - 0.5) * 10}deg)`;
+        document.body.style.fontSize = `${16 + Math.random() * 20}px`;
+        spawnHeartExplosion();
+      }, 500);
+    }
+  </script>
+</body>
+</html>
